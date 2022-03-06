@@ -7,14 +7,13 @@ increase = 0
 decrease = 0
 
 
-while counter < len(myArray):
+while counter < (len(myArray) -1):
   if myArray[number1] < myArray[number2]:
     increase += 1
-  else:
+  elif myArray[number1] > myArray[number2]:
     decrease += 1  
   counter += 1
-  if number2 < (len(myArray) - 1):
-    number2 += 1
-    number1 += 1
+  number2 += 1
+  number1 += 1
   
 print("increase = ", increase, "decrease = ", decrease, "length", len(myArray), number2)
