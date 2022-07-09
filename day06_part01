@@ -1,0 +1,35 @@
+#7 dagen voor nieuwe vis
+#9 dagen voor nieuwe vissen
+#start op 6>5>4>3>2>1>0>spawn vis+6, nieuw vis = 8
+fishdatabase = [0] * 9
+fishinput = [1,2,1,3,2,1,1,5,1,4,1,2,1,4,3,3,5,1,1,3,5,3,4,5,5,4,3,1,1,4,3,1,5,2,5,2,4,1,1,1,1,1,1,1,4,1,4,4,4,1,4,4,1,4,2,1,1,1,1,3,5,4,3,3,5,4,1,3,1,1,2,1,1,1,4,1,2,5,2,3,1,1,1,2,1,5,1,1,1,4,4,4,1,5,1,2,3,2,2,2,1,1,4,3,1,4,4,2,1,1,5,1,1,1,3,1,2,1,1,1,1,4,5,5,2,3,4,2,1,1,1,2,1,1,5,5,3,5,4,3,1,3,1,1,5,1,1,4,2,1,3,1,1,4,3,1,5,1,1,3,4,2,2,1,1,2,1,1,2,1,3,2,3,1,4,5,1,1,4,3,3,1,1,2,2,1,5,2,1,3,4,5,4,5,5,4,3,1,5,1,1,1,4,4,3,2,5,2,1,4,3,5,1,3,5,1,3,3,1,1,1,2,5,3,1,1,3,1,1,1,2,1,5,1,5,1,3,1,1,5,4,3,3,2,2,1,1,3,4,1,1,1,1,4,1,3,1,5,1,1,3,1,1,1,1,2,2,4,4,4,1,2,5,5,2,2,4,1,1,4,2,1,1,5,1,5,3,5,4,5,3,1,1,1,2,3,1,2,1,1]
+#her-inrichten van input naar groepjes waarden
+for i in range(len(fishinput)):
+    a = fishinput[i]
+    fishdatabase[a] +=1
+print("0 dagen tot 8 dagen", (fishdatabase))
+#vanaf hier de dagen laten lopen
+# 6>5, 5>4, 4>3, 3>2, 2>1, 1>0, 0>6 + new8, 8>7, 7>6
+aantaldagen = 0
+fishdatabaseOldValue = [] * 9
+while aantaldagen < 80:
+    fishdatabaseOldValue = fishdatabase.copy()
+    
+    fishdatabase[0] = fishdatabaseOldValue[1]
+    fishdatabase[1] = fishdatabaseOldValue[2]
+    fishdatabase[2] = fishdatabaseOldValue[3]
+    fishdatabase[3] = fishdatabaseOldValue[4]
+    fishdatabase[4] = fishdatabaseOldValue[5]
+    fishdatabase[5] = fishdatabaseOldValue[6]
+    fishdatabase[6] = fishdatabaseOldValue[7] + fishdatabaseOldValue[0]
+    fishdatabase[7] = fishdatabaseOldValue[8]
+    fishdatabase[8] = fishdatabaseOldValue[0]
+
+    aantaldagen +=1
+    #print(aantaldagen, fishdatabase, fishdatabaseOldValue)
+
+#Tel vissen bij elkaar op
+aantalvissen = 0
+for i in range(len(fishdatabase)):
+    aantalvissen = aantalvissen + fishdatabase[i]
+print(aantaldagen, aantalvissen)
